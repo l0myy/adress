@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Address;
+use App\Http\Requests\AddressRequest;
 use Illuminate\Http\Request;
 
 class AddressController extends Controller
@@ -36,11 +37,9 @@ class AddressController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AddressRequest $request)
     {
-        $address = new Address();
-        $count=0;
-
+        $count = 0;
         $array = array();
         if ($request->file('file')) {
 
@@ -56,12 +55,9 @@ class AddressController extends Controller
                     array_push($array, $myArray);
                 }
             }
-
             // close file for read
             fclose($fh);
-
             foreach ($array as $key => $val) {
-
                 $address = new Address();
                 $address->ip = $array[$key]['ip'];
                 $address->port = $array[$key]['port'];
@@ -69,20 +65,24 @@ class AddressController extends Controller
                 $address->save();
                 $count++;
             }
+        }
+        else {
 
-        } else {
+            $address = new Address();
             $address->ip = $request->ip;
             $address->port = $request->port;
             $address->owner = rand(1, 4);
             $address->save();
         }
-        if($count>0){
-            return redirect()->route('address.index')->with('success',$count . ' addresses created successfully!');
+
+        if($count>0)
+        {
+            return redirect()->route('address.index')->with('success',$count . 'addresses created successfully!');
         }
         return redirect()->route('address.index')->with('success','The new address created successfully!');
     }
 
-    /**
+     /**
      * Show the form for editing the specified resource.
      *
      * @param int $id
@@ -103,7 +103,7 @@ class AddressController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AddressRequest $request, $id)
     {
         $address = Address::find($id);
         $address->ip = $request->ip;
