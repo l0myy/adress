@@ -16,13 +16,24 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{{route('address.index')}}">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="{{route('address.create')}}">Create ip <span class="sr-only">(current)</span></a>
+            <li class="nav-item active offset-3">
+                <a class="nav-link" href="{{route('address.create')}}">Create address<span class="sr-only">(current)</span></a>
             </li>
+
         </ul>
     </div>
 </nav>
 <div class="container">
+    @if($errors->any())
+        @foreach($errors->all() as $error)
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{$error}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endforeach
+    @endif
 
     @if(session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">

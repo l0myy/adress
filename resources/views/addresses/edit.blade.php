@@ -9,11 +9,11 @@
         <h3>Edit address</h3>
         <div class="form-group">
             <h4>Edit IP</h4>
-            <input type="text" class="form-control" name="ip" autofocus value="{{$address->ip}}">
+            <input type="text" class="form-control" name="ip" autofocus value="{{ old('ip') ?? $address->ip ?? ''}}">
         </div>
         <div class="form-group">
             <h4>Edit Port</h4>
-            <input type="text" class="form-control" name="port" value="{{$address->port}}">
+            <input type="text" class="form-control" name="port" value="{{ old('port') ?? $address->port ?? ''}}">
         </div>
         <input type="submit" value="Edit address" class="btn btn-outline-success">
     </form>
