@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\Adress::class, function (Faker $faker) {
+$factory->define(App\Address::class, function (Faker $faker) {
 
     $created = $faker->dateTimeBetween('-30 days','-1 days');
     $ip = rand(0,255) . "." . rand(0,255) . "." . rand(0,255) . "." . rand(0,255);
