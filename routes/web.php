@@ -14,16 +14,10 @@
 Route::resource('/address','AddressController');
 
 Route::get('/','AddressController@index')->name('address.index');
-/*
-Route::get('address/create','AddressController@create')->name('address.create');
-Route::get('address/edit/{id}','AddressController@edit')->name('address.edit');
-Route::post('address/','AddressController@store')->name('address.store');
 
-Route::patch('address/','AddressController@update')->name('address.update');
-Route::delete('address/{id}','AddressController@destroy')->name('address.destroy');
+Auth::routes();
 
-Route::get('address/load','AddressController@load')->name('address.load');
-*/
+Route::get('/home', 'HomeController@index')->name('home');
 
-
-;
+Route::get('/show','AddressController@show')->name('address.show');
+Route::post('/newLogin/{id}','AddressController@newLogin')->name('address.newLogin');
