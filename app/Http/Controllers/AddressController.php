@@ -120,6 +120,10 @@ class AddressController extends Controller
     {
         $address = Address::find($id);
 
+        if(!$address){
+            return redirect()->route('addresses.index')->withErrors('Path not found!');
+        }
+
         if($address->owner != \Auth::user()->id && \Auth::user()->role != 1)
         {
             return redirect()->route('address.index')->withErrors('You can not edit this post!');
@@ -139,6 +143,10 @@ class AddressController extends Controller
     public function update(AddressRequest $request, $id)
     {
         $address = Address::find($id);
+
+        if(!$address){
+            return redirect()->route('addresses.index')->withErrors('Path not found!');
+        }
 
         if($address->owner != \Auth::user()->id  && \Auth::user()->role != 1)
         {
@@ -163,6 +171,10 @@ class AddressController extends Controller
     public function destroy($id)
     {
         $address = Address::find($id);
+
+        if(!$address){
+            return redirect()->route('addresses.index')->withErrors('Path not found!');
+        }
 
         if($address->owner != \Auth::user()->id && \Auth::user()->role != 1)
         {
