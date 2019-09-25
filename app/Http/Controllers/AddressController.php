@@ -4,10 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Address;
 use App\Http\Requests\AddressRequest;
+use App\User;
 use Illuminate\Http\Request;
 
 class AddressController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -29,6 +36,27 @@ class AddressController extends Controller
     public function create()
     {
         return view('addresses.create');
+    }
+
+    public function show(){
+        $users = User::all();
+        return view('addresses.show',compact('users'));
+    }
+
+    public function newLogin($id){
+
+        if(\Session::get('id')){
+            \Auth::loginUsingId(\Session::get('id'));
+            \Session::forget('id');
+        }
+        else{
+            \Session::put('id', \Auth::user()->id);
+            \Auth::loginUsingId($id);
+        }
+
+        $user = User::find($id);
+
+        return redirect()->route('address.index')->with('success','You are login as ' . $user->name);
     }
 
     /**
@@ -61,7 +89,7 @@ class AddressController extends Controller
                 $address = new Address();
                 $address->ip = $array[$key]['ip'];
                 $address->port = $array[$key]['port'];
-                $address->owner = rand(1, 4);
+                $address->owner = \Auth::user()->id;
                 $address->save();
                 $count++;
             }
@@ -71,7 +99,7 @@ class AddressController extends Controller
             $address = new Address();
             $address->ip = $request->ip;
             $address->port = $request->port;
-            $address->owner = rand(1, 4);
+            $address->owner = \Auth::user()->id;
             $address->save();
         }
 
@@ -92,6 +120,11 @@ class AddressController extends Controller
     {
         $address = Address::find($id);
 
+        if($address->owner != \Auth::user()->id && \Auth::user()->role != 1)
+        {
+            return redirect()->route('address.index')->withErrors('You can not edit this post!');
+        }
+
         return view('addresses.edit',compact('address'));
 
     }
@@ -106,6 +139,13 @@ class AddressController extends Controller
     public function update(AddressRequest $request, $id)
     {
         $address = Address::find($id);
+
+        if($address->owner != \Auth::user()->id  && \Auth::user()->role != 1)
+        {
+            return redirect()->route('address.index')->withErrors('You can not edit this post!');
+        }
+
+
         $address->ip = $request->ip;
         $address->port = $request->port;
         $address->update();
@@ -123,6 +163,12 @@ class AddressController extends Controller
     public function destroy($id)
     {
         $address = Address::find($id);
+
+        if($address->owner != \Auth::user()->id && \Auth::user()->role != 1)
+        {
+            return redirect()->route('address.index')->withErrors('You can not delete this post!');
+        }
+
         $address->delete();
 
         return redirect()->route('address.index')->with('success','The address deleted successfully!');
