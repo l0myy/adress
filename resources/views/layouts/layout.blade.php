@@ -8,6 +8,7 @@
     <title>{{$title}}</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
 <nav class="container navbar navbar-expand-lg navbar-light bg-light">
@@ -19,17 +20,17 @@
 
             @auth
                 <li class="nav-item active offset-3">
-                    <a class="nav-link" href="{{route('address.create')}}">Create address<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{{route('address.create')}}">Create IP<span class="sr-only">(current)</span></a>
                 </li>
             @if(Auth::user()->role == 1)
-            <li class="nav-item active">
+            <li class="nav-item active offset-3 ">
                 <a class="nav-link" href="{{route('address.show')}}">Users <span class="sr-only">(current)</span></a>
             </li>
             @endif
                 @if(Session::get('id'))
 
                     <form id = "log" action="{{route('address.newLogin',Session::get('id'))}}" method="post" enctype="multipart/form-data">
-                        <div class="nav-item active">
+                        <div class="nav-item active offset-3">
                             <a class="nav-link" type="submit" href="{{route('address.newLogin',Session::get('id'))}}"
                             onclick="event.preventDefault(); document.getElementById('log').submit();">Back to admin</a>
                         </div>
