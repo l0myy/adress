@@ -16,10 +16,11 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{{route('address.index')}}">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item active offset-3">
-                <a class="nav-link" href="{{route('address.create')}}">Create address<span class="sr-only">(current)</span></a>
-            </li>
+
             @auth
+                <li class="nav-item active offset-3">
+                    <a class="nav-link" href="{{route('address.create')}}">Create address<span class="sr-only">(current)</span></a>
+                </li>
             @if(Auth::user()->role == 1)
             <li class="nav-item active">
                 <a class="nav-link" href="{{route('address.show')}}">Users <span class="sr-only">(current)</span></a>
