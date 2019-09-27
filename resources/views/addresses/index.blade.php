@@ -8,7 +8,9 @@
             <div class="col-6">
                 <div class="card">
                     <div class="card-body">
-                        {{$address->ip}}:{{$address->port}}
+                        IP: <span class="offset-1">{{$address->ip}}</span>
+                        <br>
+                        Port:<span class="offset-1">{{$address->port}}</span>
                     </div>
                 </div>
                     @auth
@@ -26,6 +28,7 @@
                         @endif
                     @endauth
             </div>
+
 
         @endforeach
     </div>
