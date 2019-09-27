@@ -18,7 +18,6 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{{route('address.index')}}">Home <span class="sr-only">(current)</span></a>
             </li>
-
             @auth
                 <li class="nav-item active offset-3">
                     <a class="nav-link" href="{{route('address.create')}}">Create IP<span class="sr-only">(current)</span></a>
@@ -29,10 +28,9 @@
             </li>
             @endif
                 @if(Session::get('id'))
-
                     <form id = "log" action="{{route('address.newLogin',Session::get('id'))}}" method="post" enctype="multipart/form-data">
                         <div class="nav-item active offset-3">
-                            <a class="nav-link" type="submit" href="{{route('address.newLogin',Session::get('id'))}}"
+                            <a class="nav-link" href="{{route('address.newLogin',Session::get('id'))}}"
                             onclick="event.preventDefault(); document.getElementById('log').submit();">Back to admin</a>
                         </div>
                         @csrf
