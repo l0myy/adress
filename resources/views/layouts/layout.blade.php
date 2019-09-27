@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="{{'img/favicon.png'}}">
 </head>
 <body>
-<nav class="container navbar navbar-expand-lg navbar-light bg-light">
+<nav class="container navbar navbar-expand (-sm | -md | -lg | -xl)) navbar-light bg-light">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
