@@ -39,7 +39,7 @@ class AddressController extends Controller
     }
 
     public function show(){
-        $users = User::all();
+        $users = User::all()->where('role','=','0');
         return view('addresses.show',compact('users'));
     }
 
