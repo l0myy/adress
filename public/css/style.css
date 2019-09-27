@@ -1,7 +1,6 @@
 body{
     background: #fff;
     font-family: 'Open Sans', sans-serif;
-
 }
 
 nav{
@@ -18,7 +17,6 @@ nav{
 
 .card-btn,.card {
     display: flex;
-
 }
 
 .card-btn a{
