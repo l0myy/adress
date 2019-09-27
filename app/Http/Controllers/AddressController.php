@@ -101,13 +101,17 @@ class AddressController extends Controller
             $address->port = $request->port;
             $address->owner = \Auth::user()->id;
             $address->save();
+            $count++;
         }
 
-        if($count>0)
+        if($count>1)
         {
-            return redirect()->route('address.index')->with('success',$count . 'addresses created successfully!');
+            return redirect()->route('address.index')->with('success',$count . ' addresses created successfully!');
         }
+        else if($count==1)
         return redirect()->route('address.index')->with('success','The new address created successfully!');
+
+        return redirect()->route('address.index')->withErrors('Wrong file structure!');
     }
 
      /**
