@@ -15,7 +15,7 @@ Route::resource('address/address','AddressController');
 
 Route::get('address/','AddressController@index')->name('address.index');
 
-//Auth::routes();
+Auth::routes();
 
 Route::get('address/home', 'HomeController@index')->name('home');
 
