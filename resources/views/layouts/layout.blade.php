@@ -8,7 +8,6 @@
     <title>{{$title}}</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="{{'img/favicon.png'}}">
 </head>
 <body>
@@ -28,9 +27,10 @@
             </li>
             @endif
                 @if(Session::get('id'))
+
                     <form id = "log" action="{{route('address.newLogin',Session::get('id'))}}" method="post" enctype="multipart/form-data">
                         <div class="nav-item active offset-3">
-                            <a class="nav-link" href="{{route('address.newLogin',Session::get('id'))}}"
+                            <a class="nav-link"href="{{route('address.newLogin',Session::get('id'))}}"
                             onclick="event.preventDefault(); document.getElementById('log').submit();">Back to admin</a>
                         </div>
                         @csrf
