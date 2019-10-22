@@ -11,13 +11,13 @@
 |
 */
 
-Route::resource('/address','AddressController');
+Route::resource('address/address','AddressController');
 
-Route::get('/','AddressController@index')->name('address.index');
+Route::get('address/','AddressController@index')->name('address.index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('address/home', 'HomeController@index')->name('home');
 
-Route::get('/show','AddressController@show')->name('address.show');
-Route::post('/newLogin/{id}','AddressController@newLogin')->name('address.newLogin');
+Route::get('address/show','AddressController@show')->name('address.show');
+Route::post('address/newLogin/{id}','AddressController@newLogin')->name('address.newLogin');

@@ -76,8 +76,10 @@ class AddressController extends Controller
 
             while (($info = fgetcsv($fh, 1000, ";")) !== false) {
                 // save values to the array
+                dd($info);
                 for ($i = 0; $i < count($info) - 1; $i++) {
                     $myArray['ip'] = $info[$i];
+
                     $i++;
                     $myArray['port'] = $info[$i];
                     array_push($array, $myArray);
